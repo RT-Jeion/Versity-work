@@ -11,5 +11,6 @@ for i in nums:
 
 median = nums_sum / len(nums)    # addition of all numbers divided by the length of the List
 
+
 print(f"\nThe List of input number is:\n{nums}")
 print(f"Median of the Numbers: {median}")
