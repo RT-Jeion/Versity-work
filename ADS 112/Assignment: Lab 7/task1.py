@@ -1,5 +1,4 @@
-# Implement a program that counts the 
-# frequency of each character in a string using a dictionary
+# Implement a program that counts the frequency of each character in a string using a dictionary
 
 result = {}
 
