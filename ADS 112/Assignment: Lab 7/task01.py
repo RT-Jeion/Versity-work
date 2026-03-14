@@ -3,7 +3,7 @@
 result = {}
 
 s = input("Enter the String: ")
-
+s = s.lower()
 for i in s:
     if i in result.keys():
         result[i] += 1
