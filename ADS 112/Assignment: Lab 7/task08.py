@@ -15,6 +15,6 @@ print("Set no.1", set1)
 print("Set no.2", set2)
 print("Set no.3", set3)
 print("Set no.4", set4)
-# Passing individual sets
+
 result = intersection_of_sets(set1, set2, set3, set4)
 print(f"Intersection of individual sets: {result}")
