@@ -1,0 +1,1 @@
+# Write a function that extracts all hashtags (words starting with ) from a text using regex.

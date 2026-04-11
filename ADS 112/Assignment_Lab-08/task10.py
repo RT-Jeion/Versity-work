@@ -1,0 +1,1 @@
+# Write a program that checks if a string contains any offensive words using a predefined list and regex.

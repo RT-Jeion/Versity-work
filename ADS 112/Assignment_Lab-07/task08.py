@@ -1,4 +1,4 @@
-# Implement a function that calculates the intersection of multiple sets
+# Implement a function that calculates the intersection of multiple sets.
 
 def intersection_of_sets(*sets):
     if not sets:

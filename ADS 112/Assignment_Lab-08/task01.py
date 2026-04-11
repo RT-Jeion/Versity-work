@@ -2,7 +2,7 @@
 import re
 
 def valid_mail(mail):
-    pattern = r'[a-zA-Z0-9]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2 ,}'
+    pattern = r'[a-zA-Z0-9]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}'
     return re.findall(pattern, mail)
 
 
