@@ -75,6 +75,12 @@ for i in [stock1, stock2, stock3]:
 # Build day axis from 0..30 to match the 31-point generated price path.
 days = np.arange(0, 31)
 
+# Returns are recorded for days 1..30 in column index 3.
+return_days = np.arange(1, 31)
+stock1_returns = stock1[1][:, 3]
+stock2_returns = stock2[1][:, 3]
+stock3_returns = stock3[1][:, 3]
+
 # Plot all generated stock paths on one chart.
 plt.plot(days, stock1[4], label=stock1[0], linewidth=2)
 plt.plot(days, stock2[4], label=stock2[0], linewidth=2)
@@ -87,3 +93,19 @@ plt.ylabel("Price")
 plt.legend()
 plt.grid(True, alpha=0.3)
 plt.show()
+
+# Plot all daily return series on one chart.
+plt.figure()
+plt.plot(return_days, stock1_returns, label=stock1[0], linewidth=2)
+plt.plot(return_days, stock2_returns, label=stock2[0], linewidth=2)
+plt.plot(return_days, stock3_returns, label=stock3[0], linewidth=2)
+plt.margins(x=0)
+
+plt.title("Daily Log Returns")
+plt.xlabel("Day")
+plt.ylabel("Return")
+plt.legend()
+plt.grid(True, alpha=0.3)
+plt.show()
+
+

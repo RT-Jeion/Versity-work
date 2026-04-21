@@ -1,6 +1,6 @@
 # Lab Project: Synthetic Stock Data Generator
 
-This project generates synthetic stock market data for 3 sample stocks, saves each stock to a CSV file, calculates risk metrics, and plots price movement on a graph.
+This project generates synthetic stock market data for 3 sample stocks, saves each stock to a CSV file, calculates risk metrics, and plots both price movement and daily returns.
 
 ## What The Script Does
 
@@ -14,6 +14,7 @@ The script in [get_data.py](get_data.py) performs the following workflow:
 4. Saves generated values to CSV files.
 5. Prints volatility category labels in the terminal.
 6. Plots all stock price series on one Matplotlib chart.
+7. Plots all stock daily log return series on a second Matplotlib chart.
 
 ## Libraries Used
 
@@ -98,13 +99,19 @@ Based on standard deviation (`std_dev`) of returns:
 - `< 0.06`: High Volatility
 - `>= 0.06`: Extreme Volatility
 
-## Plot Produced
+## Plots Produced
 
-The script plots all three stocks on one graph:
+The script produces two graphs:
 
-- X-axis: Day (`0` to `30`)
-- Y-axis: Price
-- Line for each stock with legend and grid
+1. Stock Price Movement
+   - X-axis: Day (`0` to `30`)
+   - Y-axis: Price
+   - One line per stock with legend and grid
+
+2. Daily Log Returns
+   - X-axis: Day (`1` to `30`)
+   - Y-axis: Return (`ln(close/open)`)
+   - One line per stock with legend and grid
 
 ## How To Run
 
@@ -118,7 +125,7 @@ After running:
 
 - CSV files are generated in the same folder
 - Terminal shows standard deviation, volatility, and volatility category for each stock
-- A Matplotlib chart window opens
+- Two Matplotlib chart windows open (price movement and daily log returns)
 
 ## Notes
 
