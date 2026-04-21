@@ -46,7 +46,7 @@ stock3 = generate_stock("RT_ORG", 150, 100)
 
 # Save each stock's generated table and print its risk metrics.
 for i in [stock1, stock2, stock3]:
-    with open(f"{i[0].lower()}.csv", 'w', newline="") as f:
+    with open(f"stock_prices/{i[0].lower()}.csv", 'w', newline="") as f:
         write = csv.writer(f)
         # Note: rows include day/open/close/return values.
         write.writerow(["Days", "Open", "Close", "Returns"])
