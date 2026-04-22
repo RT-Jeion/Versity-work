@@ -113,8 +113,10 @@ The script produces two graphs:
    - Y-axis: Return (`ln(close/open)`)
    - One line per stock with legend and grid
 3. Figures
-   ![Stock Price Movement](figures/stock_price_movement)
-   ![Daily Log Returns](figures/daily_log_returns)
+   - Stock Price Movement
+   ![Stock Price Movement](figures/stock_price_movement.png)
+   - Daily Log Returns
+   ![Daily Log Returns](figures/daily_log_returns.png)
 
 ## How To Run
 
