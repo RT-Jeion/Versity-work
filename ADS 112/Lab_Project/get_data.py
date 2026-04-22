@@ -35,7 +35,7 @@ def generate_stock(name: str, alt_high: int, alt_low: int):
     prices = [open_price[0]]
     prices.extend(close_price)
 
-    return name, arr, std_dev, volatility, prices
+    return {"Name": name, "Data": arr, "Std_dev": std_dev, "Volatility": volatility, "Prices": prices}
 
 
 # Create three sample stocks with different price ranges.
@@ -46,25 +46,25 @@ stock3 = generate_stock("RT_ORG", 150, 100)
 
 # Save each stock's generated table and print its risk metrics.
 for i in [stock1, stock2, stock3]:
-    with open(f"stock_prices/{i[0].lower()}.csv", 'w', newline="") as f:
+    with open(f"stock_prices/{i["Name"].lower()}.csv", 'w', newline="") as f:
         write = csv.writer(f)
         # Note: rows include day/open/close/return values.
         write.writerow(["Days", "Open", "Close", "Returns"])
-        write.writerows(i[1])
-        print(f"Stock Price of {i[0]} saved to {i[0].lower()}.csv file")
+        write.writerows(i["Data"])
+        print(f"Stock Price of {i["Name"]} saved to {i["Name"].lower()}.csv file")
 
-    print("Stock:", i[0])
-    print(f"Standard Deviation:", i[2])
-    print(f"Volatility:", i[3])
+    print("Stock:", i["Name"])
+    print(f"Standard Deviation:", i["Std_dev"])
+    print(f"Volatility:", i["Volatility"])
 
     # Qualitative risk labels based on standard deviation of returns.
-    if i[2] < 0.005:
+    if i["Volatility"] < 0.005:
         print("Very Low Volatility - stable / no movement")
-    elif i[2] < 0.015:
+    elif i["Volatility"] < 0.015:
         print("Low Volatility - smooth trend")
-    elif i[2] < 0.03:
+    elif i["Volatility"] < 0.03:
         print("Medium Volatility - normal trading range")
-    elif i[2] < 0.06:
+    elif i["Volatility"] < 0.06:
         print("High Volatility - risky, large swings")
     else:
         print("Extreme Volatility - highly unstable / speculative")
@@ -77,14 +77,14 @@ days = np.arange(0, 31)
 
 # Returns are recorded for days 1..30 in column index 3.
 return_days = np.arange(1, 31)
-stock1_returns = stock1[1][:, 3]
-stock2_returns = stock2[1][:, 3]
-stock3_returns = stock3[1][:, 3]
+stock1_returns = stock1["Data"][:, 3]
+stock2_returns = stock2["Data"][:, 3]
+stock3_returns = stock3["Data"][:, 3]
 
 # Plot all generated stock paths on one chart.
-plt.plot(days, stock1[4], label=stock1[0], linewidth=2)
-plt.plot(days, stock2[4], label=stock2[0], linewidth=2)
-plt.plot(days, stock3[4], label=stock3[0], linewidth=2)
+plt.plot(days, stock1["Prices"], label=stock1["Name"], linewidth=2)
+plt.plot(days, stock2["Prices"], label=stock2["Name"], linewidth=2)
+plt.plot(days, stock3["Prices"], label=stock3["Name"], linewidth=2)
 plt.margins(x=0)
 
 plt.title("Stock Price Movement")
@@ -92,13 +92,14 @@ plt.xlabel("Day")
 plt.ylabel("Price")
 plt.legend()
 plt.grid(True, alpha=0.3)
+plt.savefig("figures/stock_price_movement")
 plt.show()
 
 # Plot all daily return series on one chart.
 plt.figure()
-plt.plot(return_days, stock1_returns, label=stock1[0], linewidth=2)
-plt.plot(return_days, stock2_returns, label=stock2[0], linewidth=2)
-plt.plot(return_days, stock3_returns, label=stock3[0], linewidth=2)
+plt.plot(return_days, stock1_returns, label=stock1["Name"], linewidth=2)
+plt.plot(return_days, stock2_returns, label=stock2["Name"], linewidth=2)
+plt.plot(return_days, stock3_returns, label=stock3["Name"], linewidth=2)
 plt.margins(x=0)
 
 plt.title("Daily Log Returns")
@@ -106,6 +107,7 @@ plt.xlabel("Day")
 plt.ylabel("Return")
 plt.legend()
 plt.grid(True, alpha=0.3)
+plt.savefig("figures/daily_log_returns")
 plt.show()
 
 
