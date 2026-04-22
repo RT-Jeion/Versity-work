@@ -126,7 +126,7 @@ python get_data.py
 
 After running:
 
-- CSV files are generated in the same folder
+- CSV files are generated [stock_prices](stock_prices) folder
 - Terminal shows standard deviation, volatility, and volatility category for each stock
 - Two Matplotlib chart windows open (price movement and daily log returns)
 
