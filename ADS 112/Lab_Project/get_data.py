@@ -81,33 +81,35 @@ stock1_returns = stock1["Data"][:, 3]
 stock2_returns = stock2["Data"][:, 3]
 stock3_returns = stock3["Data"][:, 3]
 
-# Plot all generated stock paths on one chart.
-plt.plot(days, stock1["Prices"], label=stock1["Name"], linewidth=2)
-plt.plot(days, stock2["Prices"], label=stock2["Name"], linewidth=2)
-plt.plot(days, stock3["Prices"], label=stock3["Name"], linewidth=2)
-plt.margins(x=0)
 
-plt.title("Stock Price Movement")
-plt.xlabel("Day")
-plt.ylabel("Price")
-plt.legend()
-plt.grid(True, alpha=0.3)
-plt.savefig("figures/stock_price_movement")
-plt.show()
+fig, axs = plt.subplots(2,1, sharex=True)
+
+# Plot all generated stock paths on one chart.
+
+axs[0].plot(days, stock1["Prices"], label=stock1["Name"], linewidth=2)
+axs[0].plot(days, stock2["Prices"], label=stock2["Name"], linewidth=2)
+axs[0].plot(days, stock3["Prices"], label=stock3["Name"], linewidth=2)
+axs[0].margins(x=0)
+
+axs[0].set_title("Stock Price Movement")
+axs[0].set_xlabel("Day")
+axs[0].set_ylabel("Price")
+axs[0].legend()
+axs[0].grid(True, alpha=0.3)
 
 # Plot all daily return series on one chart.
-plt.figure()
-plt.plot(return_days, stock1_returns, label=stock1["Name"], linewidth=2)
-plt.plot(return_days, stock2_returns, label=stock2["Name"], linewidth=2)
-plt.plot(return_days, stock3_returns, label=stock3["Name"], linewidth=2)
-plt.margins(x=0)
 
-plt.title("Daily Log Returns")
-plt.xlabel("Day")
-plt.ylabel("Return")
-plt.legend()
-plt.grid(True, alpha=0.3)
-plt.savefig("figures/daily_log_returns")
+axs[1].plot(return_days, stock1_returns, label=stock1["Name"], linewidth=2)
+axs[1].plot(return_days, stock2_returns, label=stock2["Name"], linewidth=2)
+axs[1].plot(return_days, stock3_returns, label=stock3["Name"], linewidth=2)
+axs[1].margins(x=0)
+
+axs[1].set_title("Daily Log Returns")
+axs[1].set_xlabel("Day")
+axs[1].set_ylabel("Return")
+axs[1].legend()
+axs[1].grid(True, alpha=0.3)
+
+plt.tight_layout()
+plt.savefig("figures/plots.png")
 plt.show()
-
-
