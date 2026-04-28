@@ -1,6 +1,5 @@
 # Write a Python class called 'Student' that calculates the GPA based on a list of grades.
 
-
 class Student:
 	def __init__(self, name, grades):
 		self.name = name
