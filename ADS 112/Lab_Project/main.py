@@ -1,22 +1,24 @@
 import csv
 import numpy as np
 import matplotlib.pyplot as plt
-
+# imported neccesary Libraries
 
 def generate_stock(name: str, alt_high: int, alt_low: int):
-    # Generate 30 days of synthetic stock data for a single stock.
+    
+    # For Generate 30 days data for any corresponding data's
     rows = 30
 
     # Day index: 1 to 30
     dates = np.arange(1, rows + 1, dtype=int)
 
-    # Open price is sampled independently each day from [alt_low, alt_high].
+    # Randomly Generated array/list (size=30 data) by numpy library, alt_low and alt_high are the range of randomly generated price.
     open_price = np.random.uniform(alt_low, alt_high, size=rows)
 
-    # Close price follows this rule:
-    # day n close = day n+1 open for n=1..29, and day 30 close is random.
-    close_price = np.empty(rows, dtype=float)
-    close_price[:-1] = open_price[1:]                # dependency rule
+    # Todays closing price is yesterday's opening price.
+    # so 2nd to 30th days opening price is 1st to 29th day's closing price
+
+    close_price = np.empty(rows, dtype=float) # created empty array/list temporary
+    close_price[:-1] = open_price[1:]
     close_price[-1] = np.random.uniform(alt_low, alt_high)  # last one random
 
     # Log return for each day: r = ln(close/open)
@@ -35,6 +37,7 @@ def generate_stock(name: str, alt_high: int, alt_low: int):
     prices = [open_price[0]]
     prices.extend(close_price)
 
+    # here the data's are returned as Dictionary format.
     return {"Name": name, "Data": arr, "Std_dev": std_dev, "Volatility": volatility, "Prices": prices}
 
 
@@ -44,13 +47,14 @@ stock2 = generate_stock("Amazon", 110, 70)
 stock3 = generate_stock("RT_ORG", 150, 100)
 
 
-# Save each stock's generated table and print its risk metrics.
-for i in [stock1, stock2, stock3]:
+# Save each stock's date, open price, close price and reuturns in csv files.
+
+for i in [stock1, stock2, stock3]:  # put 3 stocks in list to iterate each stocks one by one.
     with open(f"stock_prices/{i["Name"].lower()}.csv", 'w', newline="") as f:
         write = csv.writer(f)
-        # Note: rows include day/open/close/return values.
-        write.writerow(["Days", "Open", "Close", "Returns"])
-        write.writerows(i["Data"])
+
+        write.writerow(["Days", "Open", "Close", "Returns"]) # writing heads rows of the csv file's data
+        write.writerows(i["Data"])      # main csv data in nested list format
         print(f"Stock Price of {i["Name"]} saved to {i["Name"].lower()}.csv file")
 
     print("Stock:", i["Name"])
@@ -83,22 +87,28 @@ stock3_returns = stock3["Data"][:, 3]
 
 
 fig, axs = plt.subplots(2,1, sharex=True)
+# Here fig is whole figure and axs are the subplots. (2,1) means sub plots placement
+# 2 row, 1 columns. Total 2 subplot
 
 # Plot all generated stock paths on one chart.
+# axs[0] 1st subplot: Graph of Stock Prices
 
+# plot(values in x axis, values in y axis )
 axs[0].plot(days, stock1["Prices"], label=stock1["Name"], linewidth=2)
 axs[0].plot(days, stock2["Prices"], label=stock2["Name"], linewidth=2)
 axs[0].plot(days, stock3["Prices"], label=stock3["Name"], linewidth=2)
-axs[0].margins(x=0)
+axs[0].margins(x=0)     # Price line starts from x = 0.
 
-axs[0].set_title("Stock Price Movement")
-axs[0].set_xlabel("Day")
-axs[0].set_ylabel("Price")
-axs[0].legend()
-axs[0].grid(True, alpha=0.3)
+
+axs[0].set_title("Stock Price Movement")    # title of the subplot
+axs[0].set_xlabel("Day")    # x axis lebel
+axs[0].set_ylabel("Price")  # y axis lebel
+axs[0].legend()     # Identifing the lines 
+axs[0].grid(True, alpha=0.3)  # alpha means density of the grids
+
 
 # Plot all daily return series on one chart.
-
+# axs[1] 2nd subplost: Graph of Daily Returns
 axs[1].plot(return_days, stock1_returns, label=stock1["Name"], linewidth=2)
 axs[1].plot(return_days, stock2_returns, label=stock2["Name"], linewidth=2)
 axs[1].plot(return_days, stock3_returns, label=stock3["Name"], linewidth=2)
@@ -110,6 +120,6 @@ axs[1].set_ylabel("Return")
 axs[1].legend()
 axs[1].grid(True, alpha=0.3)
 
-plt.tight_layout()
-plt.savefig("figures/plots.png")
-plt.show()
+plt.tight_layout()   # format the graph properly to avoid overwrite
+plt.savefig("figures/plots.png")    # save the figure
+plt.show()  # Show the Figure ( pop up on screen )
