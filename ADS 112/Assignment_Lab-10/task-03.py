@@ -1,20 +1,18 @@
-# Write a class 'GeometricShape' with methods to calculate areas.
-
+ # Write a class 'GeometricShape' with methods to calculate areas.
 
 class GeometricShape:
-	def area_circle(self, radius):
-		return 3.141592653589793 * radius * radius
+	def area_circle(self, radius: float) -> float:
+		return 3.1416 * radius * radius
 
-	def area_rectangle(self, length, width):
-		return length * width
-
-	def area_square(self, side):
+	def area_square(self, side: float) -> float:
 		return side * side
 
+	def area_rectangular(self, height: float, width: float) -> float:
+		return height * width
 
-if __name__ == "__main__":
-	shape = GeometricShape()
-	print(f"Circle area (r=4): {shape.area_circle(4):.2f}")
-	print(f"Rectangle area (6x3): {shape.area_rectangle(6, 3):.2f}")
-	print(f"Square area (5): {shape.area_square(5):.2f}")
 
+shape = GeometricShape()
+
+print("Area of Circle:", shape.area_circle(3))
+print("Area of Square:", shape.area_square(5))
+print("Area of Rectangular:", shape.area_rectangular(2,4))

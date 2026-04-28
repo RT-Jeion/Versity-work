@@ -1,16 +1,20 @@
 # Write a Python class called 'Student' that calculates the GPA based on a list of grades.
 
 class Student:
-	def __init__(self, name, grades):
-		self.name = name
-		self.grades = grades
+    def __init__(self, name: str, grade: list[float]):
+        self.name = name
+        self.grade = grade
 
-	def calculate_gpa(self):
-		if not self.grades:
-			return 0.0
-		return sum(self.grades) / len(self.grades)
+    def result(self) -> float:
+        print("Student Name:", self.name)
+        print("Result:", end=" ")
+        if not self.grade:
+            return 0.00
+        return sum(self.grade) / len(self.grade)
 
 
-if __name__ == "__main__":
-	student = Student("Asha", [3.7, 3.3, 3.9, 3.5])
-	print(f"{student.name}'s GPA: {student.calculate_gpa():.2f}")
+rt = Student("RT", [4,3.5,4,4,4,3.75, 4])
+print(rt.result())
+
+jeion = Student("Jeion", [3.5,2,3.5,2,4])
+print(jeion.result())
