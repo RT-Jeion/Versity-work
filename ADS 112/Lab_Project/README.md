@@ -42,7 +42,7 @@ open_price = np.random.uniform(alt_low, alt_high, size=rows)
 **What happens:**
 - `np.random.uniform(alt_low, alt_high, size=rows)` generates **30 random numbers** between `alt_low` and `alt_high`
 - Each random number represents the **opening price for one trading day**
-- For Apple: `np.random.uniform(50, 100, size=30)` → generates 30 random prices between $50 and $100
+- For ZRex: `np.random.uniform(50, 100, size=30)` → generates 30 random prices between $50 and $100
 
 **For closing prices:**
 
@@ -74,7 +74,7 @@ def generate_stock(name: str, alt_high: int, alt_low: int):
 
 | Key | Value Type | Purpose | Example Access |
 |-----|-----------|---------|-----------------|
-| `"Name"` | string | Stock identifier | `stock1["Name"]` → "Apple" |
+| `"Name"` | string | Stock identifier | `stock1["Name"]` → "ZRex" |
 | `"Data"` | 30×4 array | Days, Open, Close, Returns | `stock1["Data"]` → full table |
 | `"Std_dev"` | float | Daily volatility measure | `stock1["Std_dev"]` → 0.0089 |
 | `"Volatility"` | float | 30-day scaled volatility | `stock1["Volatility"]` → 0.0487 |
@@ -85,20 +85,20 @@ def generate_stock(name: str, alt_high: int, alt_low: int):
 ### **Step 3: Getting 3 Stocks & Storing in Variables**
 
 ```python
-stock1 = generate_stock("Apple", 100, 50)      # High=100, Low=50
-stock2 = generate_stock("Amazon", 110, 70)     # High=110, Low=70
+stock1 = generate_stock("ZRex", 100, 50)      # High=100, Low=50
+stock2 = generate_stock("Honey Gain", 110, 70)     # High=110, Low=70
 stock3 = generate_stock("RT_ORG", 150, 100)    # High=150, Low=100
 ```
 
 **What happens:**
 - Each `generate_stock()` call creates **one complete stock dictionary** with 30 days of data
-- **stock1** contains Apple's synthetic data (prices between $50-$100)
-- **stock2** contains Amazon's synthetic data (prices between $70-$110)
+- **stock1** contains ZRex's synthetic data (prices between $50-$100)
+- **stock2** contains Honey Gain's synthetic data (prices between $70-$110)
 - **stock3** contains RT_ORG's synthetic data (prices between $100-$150)
 
 **How to access the data:**
 ```python
-stock1["Name"]           # "Apple"
+stock1["Name"]           # "ZRex"
 stock1["Data"]           # 30×4 table with all prices and returns
 stock1["Data"][5, 1]     # Row 5, Column 1 (6th day's opening price)
 stock1["Volatility"]     # 0.0234 (example volatility value)
@@ -123,12 +123,12 @@ for i in [stock1, stock2, stock3]:  # Loop through all 3 stocks one by one
 
 | Loop Iteration | Variable `i` | File Created | What Gets Saved |
 |---|---|---|---|
-| 1 | `stock1` | `apple.csv` | Apple's 30 days of data |
-| 2 | `stock2` | `amazon.csv` | Amazon's 30 days of data |
+| 1 | `stock1` | `zrex.csv` | ZRex's 30 days of data |
+| 2 | `stock2` | `honey gain.csv` | Honey Gain's 30 days of data |
 | 3 | `stock3` | `rt_org.csv` | RT_ORG's 30 days of data |
 
 **Key points:**
-- `i["Name"].lower()` converts "Apple" → "apple" (lowercase filename)
+- `i["Name"].lower()` converts "ZRex" → "ZRex" (lowercase filename)
 - `write.writerow(["Days", "Open", "Close", "Returns"])` creates the CSV header
 - `write.writerows(i["Data"])` writes all 30 rows at once (Data is a 30×4 array)
 - **One loop saves all 3 CSV files automatically!**
@@ -145,7 +145,7 @@ print(f"Volatility:", i["Volatility"])
 
 **Terminal output example:**
 ```
-Stock: Apple
+Stock: ZRex
 Standard Deviation: 0.0089
 Volatility: 0.0487
 Medium Volatility - normal trading range
@@ -268,15 +268,15 @@ plt.show()                      # Display figure in a window
                   │
 ┌─────────────────▼───────────────────────────────┐
 │ 2. Call Function 3 Times                        │
-│    - stock1 = Apple (50-100)                    │
-│    - stock2 = Amazon (70-110)                   │
+│    - stock1 = ZRex (50-100)                    │
+│    - stock2 = Honey Gain (70-110)                   │
 │    - stock3 = RT_ORG (100-150)                  │
 └─────────────────┬───────────────────────────────┘
                   │
 ┌─────────────────▼───────────────────────────────┐
 │ 3. Loop & Save CSV Files                        │
 │    - for i in [stock1, stock2, stock3]:         │
-│    - Save apple.csv, amazon.csv, rt_org.csv    │
+│    - Save zrex.csv, honey gain.csv, rt_org.csv    │
 │    - Print metrics & volatility labels          │
 └─────────────────┬───────────────────────────────┘
                   │

@@ -42,8 +42,8 @@ def generate_stock(name: str, alt_high: int, alt_low: int):
 
 
 # Create three sample stocks with different price ranges.
-stock1 = generate_stock("Apple", 100, 50)
-stock2 = generate_stock("Amazon", 110, 70)
+stock1 = generate_stock("ZRex", 100, 50)
+stock2 = generate_stock("Honey", 110, 70)
 stock3 = generate_stock("RT_ORG", 150, 100)
 
 
