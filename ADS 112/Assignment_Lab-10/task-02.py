@@ -1,5 +1,4 @@
-# Write a 'BankAccount' class with deposit and withdraw methods.
-# Print the current balance after every transaction.
+# Write a 'BankAccount' class with deposit and withdraw methods.Print the current balance after every transaction.
 
 class Bank:
     def __init__(self, name: str, balance: int = 00):
@@ -35,5 +34,3 @@ rt.deposit(5000)
 rt.withdraw(1000)
 
 rejuwan = Bank("Rejuwan", 20000)
-rejuwan.withdraw(10000)
-rejuwan.deposit(5000)

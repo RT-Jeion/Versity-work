@@ -90,16 +90,16 @@ for student in students_dict.values():
         highest_avg = avg
         top_student = student
 
-print("=== All Students with Grades ===")
+print("All Students with Grades...")
 for student in students_dict.values():
     print(f"Name: {student.name}, Email: {student.email}, "
           f"Dept: {student.department}, Avg: {student.get_average():.2f}, "
           f"Grade: {student.get_grade()}")
 
-print("\n=== Department-wise Student Count ===")
+print("\nDepartment-wise Student Count....")
 for dept, count in dept_count.items():
     print(f"{dept}: {count}")
 
-print("\n=== Top Student ===")
+print("\n....Top Student...")
 print(f"Name: {top_student.name}, Email: {top_student.email}, "
       f"Avg: {top_student.get_average():.2f}, Grade: {top_student.get_grade()}")
